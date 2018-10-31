@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/29 16:51:56 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 09:41:37 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <dirent.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <signal.h>
 
 typedef struct s_shell	t_shell;
