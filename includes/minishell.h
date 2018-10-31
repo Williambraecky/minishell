@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 09:41:37 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 18:05:16 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_shell	t_shell;
 struct		s_shell
 {
 	char	**env;
+	int		current_cmd;
 };
 
 /*
@@ -45,6 +46,7 @@ void		print_env(t_shell *shell);
 
 int			echo_builtin(t_shell *shell, int argc, char **argv);
 int			cd_builtin(t_shell *shell, int argc, char **argv);
+int			exit_builtin(t_shell *shell, int argc, char **argv);
 
 /*
 ** Utils
@@ -53,5 +55,15 @@ int			cd_builtin(t_shell *shell, int argc, char **argv);
 void		error_exit(char *str);
 void		destroy_shell(t_shell *shell);
 void		error_exit_free(char *str, t_shell *shell);
+void		handle_sigint(int signal);
+void		display_reader(t_shell *shell);
+
+/*
+** Commands
+*/
+
+char		*extract_path(char *str);
+char		*find_path(t_shell *shell, char *cmd);
+void		read_commands(t_shell *shell);
 
 #endif

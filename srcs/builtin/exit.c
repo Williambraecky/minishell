@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:41:59 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 16:51:25 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 18:03:50 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		exit_builtin(t_shell *shell, int argc, char **argv)
 		else
 		{
 			ft_printf("exit\n");
+			destroy_shell(shell);
 			exit((unsigned char)ft_atoi(argv[1]));
 		}
 	}

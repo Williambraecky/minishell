@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 09:33:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 09:49:48 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 17:07:13 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,8 @@ char	*find_path(t_shell *shell, char *cmd)
 	while (paths[i] && !tmp)
 	{
 		tmp = ft_strtrijoin(paths[i++], "/", cmd);
-		if (stat(tmp, &st) == -1 || !S_ISDIR(st.st_mode))
+		if (stat(tmp, &st) == -1)
 			ft_strdel(&tmp);
-		else
-		{
-			ft_strdel(&tmp);
-			tmp = ft_strdup(paths[i - 1]);
-		}
 	}
 	free_env(paths);
 	return (tmp);
