@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 09:33:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 17:07:13 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 23:46:24 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ char	*find_path(t_shell *shell, char *cmd)
 	struct stat	st;
 	size_t		i;
 
-	if (!cmd || !get_env(shell, "PATH") ||
+	if (!cmd)
+		return (NULL);
+	if (ft_strchr(cmd, '/'))
+		return (cmd);
+	if (!get_env(shell, "PATH") ||
 		!(paths = ft_strsplit(get_env(shell, "PATH"), ':')))
 		return (NULL);
 	tmp = NULL;

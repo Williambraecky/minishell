@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 18:21:59 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 23:47:38 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exec_command(t_shell *shell, char *cmd)
 		error_exit_free("Out of memory", shell);
 	if (split[0] && ft_strequ(split[0], "exit"))
 		exit_builtin(shell, (int)ft_splitlen(split), split);
-	if (!(path = extract_path(split[0])))
+	//if (!(path = extract_path(split[0])))
 		path = find_path(shell, split[0]);
 	if (!path)
 	{
