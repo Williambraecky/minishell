@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 18:05:00 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/10/31 18:21:59 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	exec_command(t_shell *shell, char *cmd)
 
 void	display_reader(t_shell *shell)
 {
-	ft_printf("{yellow}%s@%s{eoc} $ ",
+	ft_printf("{yellow}%s{white}@{yellow}%s{eoc} $ ",
 	get_env(shell, "USER"), get_env(shell, "HOST"));
 }
 
