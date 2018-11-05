@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 18:32:50 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 18:57:14 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	preprocess_command(t_shell *shell, char *cmd)
 		error_exit_free("Out of memory", shell);
 	if (!(s = cmd_translate_env(shell, s)))
 		error_exit_free("Out of memory", shell);
-	if (s[0] && ft_strequ(s[0], "exit"))
-		exit_builtin(shell, (int)ft_splitlen(s), s);
+	if (s[0] && cmd_is_builtin(s[0]))
+		return (exec_builtin(shell, s));
 	path = find_path(shell, s[0]);
 	if (!path)
 	{

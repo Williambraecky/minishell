@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:41:59 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 18:03:50 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 18:53:15 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		exit_builtin(t_shell *shell, int argc, char **argv)
 {
+	free_env(argv);
 	if (argc == 1)
 	{
 		ft_printf("exit\n");

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 16:29:33 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 18:56:22 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void		print_env(t_shell *shell);
 int			echo_builtin(t_shell *shell, int argc, char **argv);
 int			cd_builtin(t_shell *shell, int argc, char **argv);
 int			exit_builtin(t_shell *shell, int argc, char **argv);
+int			unsetenv_builtin(t_shell *shell, int argc, char **argv);
+int			setenv_builtin(t_shell *shell, int argc, char **argv);
+int			env_builtin(t_shell *shell, int argc, char **argv);
 
 /*
 ** Utils
@@ -78,5 +81,7 @@ void		read_commands(t_shell *shell);
 size_t		parse_cmd_count(char *cmd);
 char		*copy_parsed_cmd_param(char *str, char *cmd);
 char		**cmd_translate_env(t_shell *shell, char **split);
+int			cmd_is_builtin(char *cmd);
+void		exec_builtin(t_shell *shell, char **s);
 
 #endif
