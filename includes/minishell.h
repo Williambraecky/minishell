@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 15:38:27 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 16:29:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int			ft_is_quote(char c);
 int			is_cmd_complete(char *cmd);
 int			ft_countains_alpha(char *str);
 char		**parse_cmd(char *cmd);
+char		*extract_key(char *str);
 
 /*
 ** Commands
@@ -76,5 +77,6 @@ char		*find_path(t_shell *shell, char *cmd);
 void		read_commands(t_shell *shell);
 size_t		parse_cmd_count(char *cmd);
 char		*copy_parsed_cmd_param(char *str, char *cmd);
+char		**cmd_translate_env(t_shell *shell, char **split);
 
 #endif

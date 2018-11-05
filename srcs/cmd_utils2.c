@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:49:25 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 15:02:01 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 16:46:25 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,82 @@ char	*copy_parsed_cmd_param(char *str, char *cmd)
 			*end++ = *cmd++;
 	}
 	return (cmd);
+}
+
+char	*find_env_value(t_shell *shell, char *str)
+{
+	size_t	len;
+	size_t	i;
+	size_t	x;
+
+	len = 0;
+	while (str[len] && str[len] != ' ' && str[len] != '\t')
+		len++;
+	if (len == 1)
+		return ("$");
+	i = 0;
+	while (shell->env[i])
+	{
+		if (shell->env[i][len - 1] == '=')
+		{
+			x = len;
+			while (x-- > 1)
+				if (str[x] != shell->env[i][x - 1])
+					break ;
+			if (x == 0)
+				return (shell->env[i] + len);
+		}
+		i++;
+	}
+	return ("");
+}
+
+char	*str_translate_env(t_shell *shell, char *str)
+{
+	char	*ret;
+	char	*env;
+	char	*tmp;
+	char	*key;
+
+	if (!(ret = ft_strdup(str)))
+		return (NULL);
+	if (ret[0] == '~')
+		ret = ft_strsrepl(ret, "~", get_env(shell, "HOME"));
+	else
+		ret = ft_strdup(str);
+	env = ft_strchr(ret, '$');
+	while (env != NULL)
+	{
+		tmp = ret;
+		if ((key = extract_key(env)))
+			ret = ft_strsrepl(ret, key, find_env_value(shell, env));
+		free(key);
+		free(tmp);
+		env = (ret == NULL ? NULL : ft_strchr(ret, '$'));
+	}
+	return (ret);
+}
+
+char	**cmd_translate_env(t_shell *shell, char **split)
+{
+	char	*tmp;
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+	{
+		if (ft_strchr(split[i], '$') || ft_strchr(split[i], '~'))
+		{
+			tmp = str_translate_env(shell, split[i]);
+			if (!tmp)
+			{
+				free_env(split);
+				return (NULL);
+			}
+			free(split[i]);
+			split[i] = tmp;
+		}
+		i++;
+	}
+	return (split);
 }

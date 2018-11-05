@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 15:45:00 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 16:34:17 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	preprocess_command(t_shell *shell, char *cmd)
 
 	if (!(s = parse_cmd(cmd)))
 		error_exit_free("Out of memory", shell);
+	if (!(s = cmd_translate_env(shell, s)))
+		error_exit_free("Out of memory", shell);
 	if (s[0] && ft_strequ(s[0], "exit"))
 		exit_builtin(shell, (int)ft_splitlen(s), s);
 	path = find_path(shell, s[0]);
@@ -44,16 +46,13 @@ void	preprocess_command(t_shell *shell, char *cmd)
 			ft_printf_fd(2, "minishell: no such file or directory: %s\n", s[0]);
 		else
 			ft_printf_fd(2, "minishell: command not found: %s\n", s[0]);
-		free_env(s);
 	}
 	else if (access(path, X_OK) == -1)
-	{
 		ft_printf_fd(2, "minishell: permission denied: %s\n", s[0]);
-		free_env(s);
-		free(path);
-	}
 	else
 		exec_command(shell, path, s);
+	free_env(s);
+	free(path);
 }
 
 void	display_reader(t_shell *shell)

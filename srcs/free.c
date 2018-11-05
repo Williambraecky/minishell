@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:19:39 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/29 14:53:31 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 16:48:36 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	destroy_shell(t_shell *shell)
 {
 	free_env(shell->env);
+	ft_strdel(&(shell->cmd));
 	ft_memdel((void **)&shell);
 }
 
