@@ -6,30 +6,21 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:09:13 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 14:49:33 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:38:14 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	ft_strtrimlen(char *str)
+int		ft_countains_alpha(char *str)
 {
-	size_t	start;
-	size_t	end;
-	size_t	i;
-
-	i = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n')
-		i++;
-	start = i;
-	end = i;
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-			end = i;
-		i++;
+		if (*str != ' ' && *str != '\t' && *str != '\n')
+			return (1);
+		str++;
 	}
-	return (end - start);
+	return (0);
 }
 
 int		ft_is_quote(char c)

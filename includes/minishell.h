@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 14:52:07 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 15:38:27 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char		*get_pwd(void);
 char		*get_path_for_reader(t_shell *shell);
 int			ft_is_quote(char c);
 int			is_cmd_complete(char *cmd);
-size_t		ft_strtrimlen(char *str);
+int			ft_countains_alpha(char *str);
 char		**parse_cmd(char *cmd);
 
 /*
