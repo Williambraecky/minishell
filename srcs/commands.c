@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 16:34:17 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 18:32:50 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	exec_command(t_shell *shell, char *path, char **s)
 }
 
 /*
-** Make sure $ENV and ~ are translated correctly
+** Execute builtins
 */
 
 void	preprocess_command(t_shell *shell, char *cmd)
