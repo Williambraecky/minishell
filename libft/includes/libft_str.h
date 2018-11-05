@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:04:28 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/29 14:25:48 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 11:52:47 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ void	ft_strsort(char **tab, size_t len, int (*cmp)());
 int		ft_strisnumber(const char *str);
 size_t	ft_splitlen(char **split);
 char	*ft_strtrijoin(char *a, char *b, char *c);
+char	*ft_strsrepl(char *str, char *match, char *replacement);
+char	*ft_strsreplall(char *str, char *match, char *replacement);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/31 18:05:16 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/05 14:52:07 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <signal.h>
+# include <sys/param.h>
+
+# define BUFF_SIZE 512
 
 typedef struct s_shell	t_shell;
 
 struct		s_shell
 {
 	char	**env;
-	int		current_cmd;
+	char	*cmd;
+	int		running;
 };
 
 /*
@@ -57,13 +61,20 @@ void		destroy_shell(t_shell *shell);
 void		error_exit_free(char *str, t_shell *shell);
 void		handle_sigint(int signal);
 void		display_reader(t_shell *shell);
+char		*get_pwd(void);
+char		*get_path_for_reader(t_shell *shell);
+int			ft_is_quote(char c);
+int			is_cmd_complete(char *cmd);
+size_t		ft_strtrimlen(char *str);
+char		**parse_cmd(char *cmd);
 
 /*
 ** Commands
 */
 
-char		*extract_path(char *str);
 char		*find_path(t_shell *shell, char *cmd);
 void		read_commands(t_shell *shell);
+size_t		parse_cmd_count(char *cmd);
+char		*copy_parsed_cmd_param(char *str, char *cmd);
 
 #endif
