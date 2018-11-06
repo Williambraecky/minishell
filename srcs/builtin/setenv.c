@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 15:57:16 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 23:58:09 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/06 10:05:24 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ static int	check_arg(char *arg)
 			return (0);
 	return (1);
 }
-
-/*
-** TODO: 27 lines
-*/
 
 int			setenv_builtin(t_shell *shell, int argc, char **argv)
 {

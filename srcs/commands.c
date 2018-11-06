@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 18:57:14 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/06 10:10:11 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	exec_command(t_shell *shell, char *path, char **s)
 
 	shell->running = 1;
 	pid = fork();
+	if (pid == -1)
+	{
+		error_exit_free("Could not create fork process", shell);
+	}
 	if (pid == 0)
 		execve(path, s, shell->env);
 	wait(&pid);
