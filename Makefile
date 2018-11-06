@@ -6,7 +6,7 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/25 13:02:54 by wbraeckm          #+#    #+#              #
-#    Updated: 2018/10/29 13:47:55 by wbraeckm         ###   ########.fr        #
+#    Updated: 2018/11/06 10:45:33 by wbraeckm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,6 @@ clean:
 	@printf $(ccred)
 	rm -rf obj/
 	@make -C $(LIBFOLDER) clean
-	@make -C $(MLXFOLDER) clean
 	@printf $(ccreset)
 
 fclean: clean
