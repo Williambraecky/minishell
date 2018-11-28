@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:44:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 19:00:03 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2018/11/28 17:47:59 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ static char	*handle_3_args(char *pwd, char **argv)
 
 	if (!ft_strstr(pwd, argv[1]))
 	{
+		free(pwd);
 		ft_printf_fd(2, "cd: string not in pwd: %s\n", argv[1]);
 		return (NULL);
 	}
 	ret = ft_strsrepl(pwd, argv[1], argv[2]);
-	free(pwd);
 	if (!ret)
+	{
+		free(pwd);
 		ft_printf_fd(2, "cd: Out of memory\n");
+	}
 	return (ret);
 }
 
@@ -32,11 +35,11 @@ static void	exec_cd(t_shell *shell, char *old_pwd, char *path, int fr)
 {
 	struct stat	st;
 
-	if (stat(path, &st) == -1)
+	if (path && stat(path, &st) == -1)
 		ft_printf_fd(2, "cd: no such file or directory: %s\n", path);
-	else if (!S_ISDIR(st.st_mode))
+	else if (path && !S_ISDIR(st.st_mode))
 		ft_printf_fd(2, "cd: not a directory: %s\n", path);
-	else if (access(path, R_OK) == -1)
+	else if (path && access(path, R_OK) == -1)
 		ft_printf_fd(2, "cd: permission denied: %s\n", path);
 	else
 	{
@@ -48,7 +51,6 @@ static void	exec_cd(t_shell *shell, char *old_pwd, char *path, int fr)
 	}
 	if (fr)
 		free(path);
-	free(old_pwd);
 }
 
 int			cd_builtin(t_shell *shell, int argc, char **argv)
@@ -76,5 +78,6 @@ int			cd_builtin(t_shell *shell, int argc, char **argv)
 		ft_printf_fd(2, "cd: too many arguments\n");
 	if (old_pwd && path && argc <= 3)
 		exec_cd(shell, old_pwd, path, argc == 3);
+	free(old_pwd);
 	return (0);
 }
