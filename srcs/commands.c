@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/06 10:10:11 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/20 14:51:08 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	exec_command(t_shell *shell, char *path, char **s)
 {
 	pid_t	pid;
+	int		status;
 
 	shell->running = 1;
 	pid = fork();
@@ -23,8 +24,11 @@ void	exec_command(t_shell *shell, char *path, char **s)
 		error_exit_free("Could not create fork process", shell);
 	}
 	if (pid == 0)
+	{
 		execve(path, s, shell->env);
-	wait(&pid);
+		return ;
+	}
+	waitpid(pid, &status, WUNTRACED | WCONTINUED);
 	shell->running = 0;
 }
 
@@ -113,6 +117,6 @@ void	read_commands(t_shell *shell)
 		ft_strdel(&(shell->cmd));
 	}
 	if (ret == -1)
-		ft_printf_fd(2, "minishell: error while reading input");
+		ft_printf_fd(2, "minishell: error while reading input\n");
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:49:25 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/28 17:44:26 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/20 14:15:05 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,38 +60,19 @@ char	*copy_parsed_cmd_param(char *str, char *cmd)
 
 char	*find_env_value(t_shell *shell, char *str)
 {
-	size_t	len;
-	size_t	i;
-	size_t	x;
+	char	*ret;
 
-	len = 0;
-	while (str[len] && str[len] != ' ' && str[len] != '\t')
-		len++;
-	if (len == 1)
-		return ("$");
-	i = 0;
-	while (shell->env[i])
-	{
-		if (shell->env[i][len - 1] == '=')
-		{
-			x = len;
-			while (x-- > 1)
-				if (str[x] != shell->env[i][x - 1])
-					break ;
-			if (x == 0)
-				return (shell->env[i] + len);
-		}
-		i++;
-	}
+	if ((ret = get_env(shell, str + 1)))
+		return (ret);
 	return ("");
 }
 
 char	*str_translate_env(t_shell *shell, char *str)
 {
 	char	*ret;
-	char	*env;
 	char	*tmp;
 	char	*key;
+	size_t	env_pos;
 
 	if (str[0] == '~')
 		ret = ft_strsrepl(str, "~", get_env(shell, "HOME"));
@@ -99,15 +80,18 @@ char	*str_translate_env(t_shell *shell, char *str)
 		ret = ft_strdup(str);
 	if (!ret)
 		return (NULL);
-	env = ft_strchr(ret, '$');
-	while (env != NULL)
+	env_pos = ft_strfind(str, '$');
+	while (ret && ret[env_pos])
 	{
 		tmp = ret;
-		if ((key = extract_key(env)))
-			ret = ft_strsrepl(ret, key, find_env_value(shell, env));
-		free(key);
-		free(tmp);
-		env = (ret == NULL ? NULL : ft_strchr(ret, '$'));
+		if ((key = extract_key(ret + env_pos)))
+		{
+			ret = ft_strsrepl(ret, key, find_env_value(shell, ret + env_pos));
+			env_pos += ft_strlen(find_env_value(shell, ret + env_pos));
+			free(key);
+			free(tmp);
+		}
+		env_pos = ft_strfind(ret + env_pos, '$');
 	}
 	return (ret);
 }
