@@ -6,13 +6,13 @@
 #    By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/25 13:02:54 by wbraeckm          #+#    #+#              #
-#    Updated: 2018/11/06 10:45:33 by wbraeckm         ###   ########.fr        #
+#    Updated: 2019/05/21 14:14:39 by wbraeckm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-FLAGS = -O3 -Wall -Wextra -Werror
+FLAGS = -O3 -Wall -Wextra -Werror #-fsanitize=address
 INCLUDES = ./includes/
 SRCSFOLDER = ./srcs/
 OBJFOLDER = ./obj/
@@ -36,7 +36,7 @@ cccyan = "\033[0;96m"
 ccreset = "\033[0;0m"
 cclightgray = "\033[0;37m"
 
-all: lib $(NAME)
+all: $(NAME)
 
 $(OBJFOLDER)/%.o:$(SRCSFOLDER)/%.c
 	@printf $(ccblue)
@@ -51,7 +51,7 @@ $(OBJSUBS):
 lib:
 	@make -C $(LIBFOLDER)
 
-$(NAME): $(OBJSUBS) $(OBJ)
+$(NAME): lib $(OBJSUBS) $(OBJ)
 	@printf $(cccyan)
 	@printf "Compiling $(NAME) "
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) -I$(INCLUDES) \
@@ -67,7 +67,7 @@ clean:
 
 fclean: clean
 	@printf $(ccred)
-	rm -rf $(NAME_PUSHSWAP) $(NAME_CHECKER)
+	rm -rf $(NAME)
 	@make -C $(LIBFOLDER) fclean
 	@printf $(ccreset)
 

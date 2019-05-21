@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:49:25 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 13:36:03 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/21 20:18:23 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*find_env_value(t_shell *shell, char *str)
 {
 	char	*ret;
 
+	if (ft_strequ(str, "$"))
+		return ("$");
 	if ((ret = get_env(shell, str + 1)))
 		return (ret);
 	return ("");
@@ -80,18 +82,18 @@ char	*str_translate_env(t_shell *shell, char *str)
 		ret = ft_strdup(str);
 	if (!ret)
 		return (NULL);
-	env_pos = ft_strfind(str, '$');
+	env_pos = ft_strfind(ret, '$');
 	while (ret && ret[env_pos])
 	{
 		tmp = ret;
 		if ((key = extract_key(ret + env_pos)))
 		{
-			ret = ft_strsrepl(ret, key, find_env_value(shell, ret + env_pos));
-			env_pos += ft_strlen(find_env_value(shell, ret + env_pos));
+			ret = ft_strsrepl(ret, key, find_env_value(shell, key));
+			env_pos += ft_strlen(find_env_value(shell, key));
 			free(key);
 			free(tmp);
 		}
-		env_pos = ft_strfind(ret + env_pos, '$');
+		env_pos += ft_strfind(ret ? ret + env_pos : "", '$');
 	}
 	return (ret);
 }

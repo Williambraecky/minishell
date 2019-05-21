@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:44:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 14:14:22 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/21 20:09:30 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			cd_builtin(t_shell *shell, int argc, char **argv)
 	{
 		if (ft_strequ(argv[1], "-") && !(path = get_env(shell, "OLDPWD")))
 			ret = ft_printf_fd(2, "cd: no OLDPWD env set\n");
-		else
+		else if (!ft_strequ(argv[1], "-"))
 			path = argv[1];
 	}
 	else if (argc == 3)
