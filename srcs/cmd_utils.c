@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 09:33:55 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/06 10:08:34 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/21 13:40:40 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t	cmd_word_len(char *cmd)
 
 	len = 0;
 	c_quote = 0;
-	while (*cmd && ((*cmd != ' ' && *cmd != '\t') || c_quote))
+	while (*cmd && *cmd != ' ' && *cmd != '\t')
 	{
 		if (ft_is_quote(*cmd))
 		{
@@ -58,8 +58,11 @@ size_t	cmd_word_len(char *cmd)
 			}
 			cmd++;
 		}
-		len++;
-		cmd++;
+		else
+		{
+			len++;
+			cmd++;
+		}
 	}
 	return (len);
 }

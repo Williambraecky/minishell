@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:49:25 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/20 14:15:05 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/21 13:36:03 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*copy_parsed_cmd_param(char *str, char *cmd)
 
 	end = str;
 	c_quote = 0;
-	while (*cmd && ((*cmd != ' ' && *cmd != '\t') || c_quote))
+	while (*cmd && *cmd != ' ' && *cmd != '\t')
 	{
 		if (ft_is_quote(*cmd))
 		{
