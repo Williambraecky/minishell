@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:09:13 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/05 16:38:34 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/21 13:25:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*extract_key(char *str)
 	return (ret);
 }
 
-int		ft_countains_alpha(char *str)
+int		ft_contains_alpha(char *str)
 {
 	while (*str)
 	{

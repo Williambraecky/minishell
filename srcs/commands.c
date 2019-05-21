@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/20 14:51:08 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/05/21 13:25:31 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	read_commands(t_shell *shell)
 			display_quote_reader(ret);
 			continue ;
 		}
-		if (ft_countains_alpha(shell->cmd))
+		if (ft_contains_alpha(shell->cmd))
 			preprocess_command(shell, shell->cmd);
 		display_reader(shell);
 		ft_strdel(&(shell->cmd));
