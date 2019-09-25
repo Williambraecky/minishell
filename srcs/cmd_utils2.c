@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 14:49:25 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 20:18:23 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/09/25 17:26:33 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*str_translate_env(t_shell *shell, char *str)
 	char	*key;
 	size_t	env_pos;
 
-	if (str[0] == '~')
+	if (str[0] == '~' && get_env(shell, "HOME"))
 		ret = ft_strsrepl(str, "~", get_env(shell, "HOME"));
 	else
 		ret = ft_strdup(str);
