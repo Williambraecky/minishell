@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 14:10:38 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/10/29 14:48:31 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/09/30 17:35:37 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	del_env(t_shell *shell, char *key)
 			shell->env[j++] = old[i];
 		i++;
 	}
+	free(old);
 }
 
 void	repl_env(t_shell *shell, char *key, char *value)

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:09:13 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 20:19:33 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/09/30 17:37:12 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*extract_key(char *str)
 	while (str[len] && str[len] == '$')
 		len++;
 	while (str[len] && str[len] != '\t' && str[len] != ' ' && str[len] != '\n'
-			&& str[len] != '$')
+			&& str[len] != '$' && str[len] != '=')
 		len++;
 	if (!(ret = ft_strnew(len)))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 16:44:30 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 20:09:30 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/09/30 17:33:35 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static int	exec_cd(t_shell *shell, char *old_pwd, char *path, int fr)
 		return (ft_printf_fd(2, "cd: permission denied: %s\n", path));
 	else
 	{
+		chdir(path);
 		if (get_env(shell, "OLDPWD"))
 			repl_env(shell, "OLDPWD", old_pwd);
 		else
 			add_env(shell, "OLDPWD", old_pwd);
-		chdir(path);
 		if (get_env(shell, "PWD"))
 			repl_env(shell, "PWD", getcwd(buff, 4096));
 		else
