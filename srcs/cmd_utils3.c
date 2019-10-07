@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 18:49:31 by wbraeckm          #+#    #+#             */
-/*   Updated: 2018/11/28 17:41:48 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:16:12 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ void	exec_builtin(t_shell *shell, char **s)
 	else if (ft_strequ(s[0], "echo"))
 		echo_builtin(shell, (int)ft_splitlen(s), s);
 	free_env(s);
+}
+
+int		is_dir(char *str)
+{
+	struct stat st;
+
+	stat(str, &st);
+	return (S_ISDIR(st.st_mode));
 }

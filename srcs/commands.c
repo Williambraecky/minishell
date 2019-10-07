@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 13:25:31 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:17:03 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	preprocess_command(t_shell *shell, char *cmd)
 	}
 	else if (access(path, X_OK) == -1)
 		ft_printf_fd(2, "minishell: permission denied: %s\n", s[0]);
+	else if (is_dir(path))
+		ft_printf_fd(2, "minishell: %s: is a directory\n", s[0]);
 	else
 		exec_command(shell, path, s);
 	free_env(s);

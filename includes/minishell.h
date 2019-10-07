@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 13:46:05 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/05/21 13:25:32 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/10/07 16:16:23 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int			is_cmd_complete(char *cmd);
 int			ft_contains_alpha(char *str);
 char		**parse_cmd(char *cmd);
 char		*extract_key(char *str);
+int			is_dir(char *str);
 
 /*
 ** Commands
