@@ -6,7 +6,7 @@
 /*   By: wbraeckm <wbraeckm@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/31 16:55:07 by wbraeckm          #+#    #+#             */
-/*   Updated: 2019/10/07 16:17:03 by wbraeckm         ###   ########.fr       */
+/*   Updated: 2019/10/22 15:51:38 by wbraeckm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	exec_command(t_shell *shell, char *path, char **s)
 	if (pid == 0)
 	{
 		execve(path, s, shell->env);
-		return ;
+		exit(0);
 	}
 	waitpid(pid, &status, WUNTRACED | WCONTINUED);
 	shell->running = 0;
